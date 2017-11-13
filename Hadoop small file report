@@ -25,5 +25,3 @@ def cal_stat ( dir_count, file_count, total_size, fs_name='name'):
     out2= fs_name + ' -------- is a empty filesystem ---- '
     out_put=out2
   return out_put
-  
-  
