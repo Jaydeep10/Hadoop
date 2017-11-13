@@ -1,0 +1,29 @@
+#!/usr/bin/python
+
+"""
+this script will help you get a report in email with details if your cluster is having a small file issues
+
+Pre-req :- Need to have mailX configured on you system
+"""
+keytab=<your keytab file of hdfs or full admin>.keytab
+import os
+import subprocess
+header=['DIR_COUNT','FILE_COUNT','SIZE','FILE_SYSTEM']
+cmd='kinit -kt ' + keytab + ' <princile of in your keytab>'
+os.system(cmd)
+
+def cal_stat ( dir_count, file_count, total_size, fs_name='name'):
+  # finding the empty dir
+  if ini(file_count) != 0 :
+    avr_size=round(float(total_size)/float(file_count),3)
+    if avr_size <=10485760 :
+      out1= fs_name + ' has small file issues with average size of file is ' + str(avr_size) + ' Bytes'
+    else :
+      out1= fs_name + ' is having good file size with average size of ' + str(avr_size) + ' Bytes '
+      out_put=out1 
+  else:
+    out2= fs_name + ' -------- is a empty filesystem ---- '
+    out_put=out2
+  return out_put
+  
+  
